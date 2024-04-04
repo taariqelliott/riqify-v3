@@ -62,7 +62,7 @@ export default function App() {
         justifyContent: "center",
         height: "100vh"
       }}>
-        <h1>Sign-In Page</h1>
+        <h1 className='h1'>Sign-In Page</h1>
         <Auth
           supabaseClient={supabase}
           providers={['github', 'google']}
@@ -81,8 +81,6 @@ export default function App() {
                   anchorTextHoverColor: 'yellow',
                   inputBorderHover: 'orangered',
                   inputText: 'orangered',
-
-
                 },
                 borderWidths: {
                   buttonBorderWidth: '2px',

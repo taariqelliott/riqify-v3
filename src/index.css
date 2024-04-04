@@ -13,6 +13,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.h1{
+  padding: 10px 0;
+  background: -webkit-linear-gradient(135deg, #ffe56f, #ff0095);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0;
+}
+
 a {
   font-weight: 500;
   color: #646cff;
