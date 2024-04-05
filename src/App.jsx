@@ -7,24 +7,44 @@ import { ThemeSupa } from '@supabase/auth-ui-shared'
 const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_KEY);
 
 async function signInWithGithub() {
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: 'github',
-  })
+  try {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: 'github',
+    });
+    if (error) {
+      throw error;
+    }
+    return data;
+  } catch (error) {
+    throw error;
+  }
 }
 
 async function signOut() {
-  const { error } = await supabase.auth.signOut()
+  try {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      throw error;
+    }
+  } catch (error) {
+    throw error;
+  }
 }
 
-
+/**
+ * Main component of the application.
+ * Handles user authentication and session management.
+ */
 export default function App() {
   const [session, setSession] = useState(null)
 
   useEffect(() => {
+    // Fetch the user's session from Supabase
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
     })
 
+    // Subscribe to changes in the user's authentication state
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
@@ -34,26 +54,40 @@ export default function App() {
       }
     })
 
+    // Unsubscribe from the authentication state changes when the component is unmounted
     return () => subscription.unsubscribe()
   }, [])
 
+  /**
+   * Handles signing in with GitHub.
+   */
   const handleGithubSignIn = async () => {
     try {
-      await signInWithGithub();
+      const data = await signInWithGithub();
+      // Handle successful sign-in if needed
+      console.log('Sign in successful:', data);
     } catch (error) {
+      // Handle sign-in error
       console.error('Failed to sign in with Github:', error.message);
     }
   };
 
+  /**
+   * Handles signing out.
+   */
   const handleSignOut = async () => {
     try {
       await signOut();
+      // Handle successful sign-out if needed
+      console.log('Sign out successful');
     } catch (error) {
+      // Handle sign-out error
       console.error('Failed to sign out:', error.message);
     }
   }
 
   if (!session) {
+    // Render the sign-in page if the user is not authenticated
     return (
       <div style={{
         display: "flex",
@@ -96,6 +130,7 @@ export default function App() {
     )
   }
   else {
+    // Render the logged-in page if the user is authenticated
     return (
       <div style={{
         display: "flex",
@@ -104,9 +139,11 @@ export default function App() {
         justifyContent: "center",
         height: "100vh"
       }}>
-        <h1>Logged In!</h1>
+        <h1 style={{ margin: 0 }}>Welcome Home</h1>
+        <h1 style={{ margin: 0 }}>Mr. {session.user.user_metadata.name.toUpperCase().split(' ').slice(-1)[0]}</h1>
+        <h4 style={{ margin: 4 }}>@{session.user.user_metadata.user_name}</h4>
+        <img src="https://f4.bcbits.com/img/0024637118_25.jpg" alt="" style={{ paddingBottom: 8, height: 500 }} />
         <button onClick={handleSignOut}>Sign Out</button>
       </div>)
   }
 }
-
