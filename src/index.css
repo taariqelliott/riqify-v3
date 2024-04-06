@@ -1,74 +1,99 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.h1{
-  padding: 10px 0;
-  background: -webkit-linear-gradient(135deg, #ffe56f, #ff0095);
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 0;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
-  
+  padding: 0;
+  background: black;
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.app-container {
+  padding: 20px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.upload-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.songName {
+  text-align: center;
+  font-size: 80%;
+  font-family: sans-serif;
+  color: white;
+  background: black;
+  border: 2px solid orangered;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 3px;
+}
+
+.upload-container>h1 {
+  color: orchid;
+  margin: 0;
+}
+
+.upload-container input[type="file"] {
+  padding: 10px;
+  margin: 10px;
+  border: 5px solid orangered;
+  border-radius: 5px;
+  width: 300px;
+}
+
+.audio-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.audio-scroll-container {
+  overflow: scroll;
+  border: 5px solid orchid;
+  border-radius: 10px;
+  max-width: 500px;
+  min-width: 500px;
+  max-height: 300px;
+  min-height: 300px;
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 500px) {
+  .audio-scroll-container {
+    max-width: 400px;
+    min-width: 400px;
+    max-height: 300px;
+    min-height: 300px;
+  }
+
+}
+
+.audio-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+
+  margin-top: 0;
+  padding: 10px;
+}
+
+.audio-item h3 {
+  margin: 0;
+}
+
+.sign-out-btn {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  padding: 10px;
+  border: 5px solid orangered;
+  border-radius: 5px;
+  background-color: orangered;
+  color: white;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  /* border-color: #646cff; */
-  border-color: #aaaaaa;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
