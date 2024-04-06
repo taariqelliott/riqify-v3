@@ -154,33 +154,42 @@ export default function App() {
   return (
     <div>
       {!session ? (
-        <Auth
-          supabaseClient={supabase}
-          appearance={{
-            theme: ThemeSupa,
-            variables: {
-              default: {
-                colors: {
-                  brand: 'orangered',
-                  brandAccent: 'green',
-                  brandButtonText: 'white',
-                  defaultButtonText: 'black',
-                  defaultButtonBackgroundHover: 'pink',
-                  defaultButtonBorder: 'red',
-                  dividerBackground: 'green',
-                  anchorTextHoverColor: 'yellow',
-                  inputBorderHover: 'orangered',
-                  inputText: 'orangered',
-                },
-                borderWidths: {
-                  buttonBorderWidth: '2px',
-                  inputBorderWidth: '2px',
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '100dvh',
+
+        }}>
+          <Auth
+            supabaseClient={supabase}
+            appearance={{
+              theme: ThemeSupa,
+              variables: {
+                default: {
+                  colors: {
+                    brand: 'orangered',
+                    brandAccent: 'green',
+                    brandButtonText: 'white',
+                    defaultButtonText: 'black',
+                    defaultButtonBackgroundHover: 'pink',
+                    defaultButtonBorder: 'red',
+                    dividerBackground: 'green',
+                    anchorTextHoverColor: 'yellow',
+                    inputBorderHover: 'orangered',
+                    inputText: 'orangered',
+                    barWidth: 20
+                  },
+                  borderWidths: {
+                    buttonBorderWidth: '2px',
+                    inputBorderWidth: '2px',
+                  },
                 },
               },
-            },
-          }}
-          ongithubSignIn={handleGithubSignIn}
-        />
+            }}
+            ongithubSignIn={handleGithubSignIn}
+          />
+        </div>
       ) : (
         <div className="app-container">
           <div className="upload-container">
@@ -203,7 +212,7 @@ export default function App() {
                         width={330}
                         trackHeight={50}
                         barWidth={1}
-                        gap={2.1}
+                        gap={2}
                         visualise={true}
                         backgroundColor="orangered"
                         barColor="black"
@@ -213,6 +222,7 @@ export default function App() {
                         showVolumeControl={true}
                         seekBarColor="white"
                         volumeControlColor="white"
+                        hideSeekBar
                       />
                       <button onClick={() => deleteAudio(audio.name)}>Delete</button>
                     </div>
