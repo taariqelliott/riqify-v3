@@ -203,7 +203,7 @@ export default function App() {
                         width={330}
                         trackHeight={50}
                         barWidth={1}
-                        gap={2}
+                        gap={2.1}
                         visualise={true}
                         backgroundColor="orangered"
                         barColor="black"
